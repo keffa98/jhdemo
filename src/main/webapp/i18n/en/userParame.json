@@ -1,0 +1,26 @@
+{
+  "jhdemoApp": {
+    "userParame": {
+      "home": {
+        "title": "User Parames",
+        "createLabel": "Create a new User Parame",
+        "createOrEditLabel": "Create or edit a User Parame",
+        "notFound": "No User Parames found"
+      },
+      "created": "A new User Parame is created with identifier {{ param }}",
+      "updated": "A User Parame is updated with identifier {{ param }}",
+      "deleted": "A User Parame is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Parame {{ id }}?"
+      },
+      "detail": {
+        "title": "User Parame"
+      },
+      "titre": "Titre",
+      "description": "Description",
+      "isbn": "Isbn",
+      "code": "Code",
+      "user": "User"
+    }
+  }
+}

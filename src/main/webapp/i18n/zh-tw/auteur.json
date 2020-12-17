@@ -1,0 +1,23 @@
+{
+  "jhdemoApp": {
+    "auteur": {
+      "home": {
+        "title": "Auteurs",
+        "createLabel": "建立一筆新的 Auteur",
+        "createOrEditLabel": "建立或編輯 Auteur",
+        "notFound": "No Auteurs found"
+      },
+      "created": "新的 Auteur 建立成功，識別碼為 {{ param }}",
+      "updated": "識別碼為 {{ param }} 的 Auteur 更新成功",
+      "deleted": "識別碼為 {{ param }} 的 Auteur 刪除成功",
+      "delete": {
+        "question": "您確定要刪除 Auteur {{ id }} 嗎?"
+      },
+      "detail": {
+        "title": "Auteur"
+      },
+      "auteur": "Auteur",
+      "livre": "Livre"
+    }
+  }
+}

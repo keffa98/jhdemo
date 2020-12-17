@@ -48,6 +48,18 @@ public class CacheConfiguration {
             createCache(cm, com.ynov.demo.domain.User.class.getName());
             createCache(cm, com.ynov.demo.domain.Authority.class.getName());
             createCache(cm, com.ynov.demo.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.ynov.demo.domain.Livre.class.getName());
+            createCache(cm, com.ynov.demo.domain.Livre.class.getName() + ".exemplaires");
+            createCache(cm, com.ynov.demo.domain.Livre.class.getName() + ".themes");
+            createCache(cm, com.ynov.demo.domain.Livre.class.getName() + ".auteurs");
+            createCache(cm, com.ynov.demo.domain.UserParame.class.getName());
+            createCache(cm, com.ynov.demo.domain.Auteur.class.getName());
+            createCache(cm, com.ynov.demo.domain.Auteur.class.getName() + ".livres");
+            createCache(cm, com.ynov.demo.domain.Emplacement.class.getName());
+            createCache(cm, com.ynov.demo.domain.Theme.class.getName());
+            createCache(cm, com.ynov.demo.domain.Theme.class.getName() + ".livres");
+            createCache(cm, com.ynov.demo.domain.Exemplaire.class.getName());
+            createCache(cm, com.ynov.demo.domain.Emprunt.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

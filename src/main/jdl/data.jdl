@@ -1,0 +1,53 @@
+entity Livre {
+    titre String required unique,
+    description String required,
+    isbn String required unique,
+    code String required
+}
+
+
+entity UserParame {
+    titre String required unique,
+    description String required,
+    isbn String required unique,
+    code String required
+}
+ 
+entity Auteur {
+    auteur String required
+}
+ 
+entity Emplacement {
+    nomEplacement String required
+}
+ 
+entity Theme {
+    theme String maxlength(45) required
+}
+ 
+entity Exemplaire {
+    disponibilite Boolean required
+}
+ 
+entity Emprunt {
+    dateEmprunt LocalDate required
+}
+ 
+relationship OneToOne {
+    Emprunt{exemplaire} to Exemplaire,
+    UserParame{user(login)} to User,
+    Livre{emplacement} to Emplacement
+}
+ 
+relationship ManyToOne {
+	Emprunt{user(login)} to User
+}
+
+relationship OneToMany {
+    Livre to Exemplaire{livre}
+}
+
+relationship ManyToMany {
+    Theme{livre(titre)} to Livre{theme},
+    Auteur{livre(titre)} to Livre{auteur}
+}

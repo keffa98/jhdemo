@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userParame">
+            <h2><span jhiTranslate="jhdemoApp.userParame.detail.title">User Parame</span> {{ userParame.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhdemoApp.userParame.titre">Titre</span></dt>
+                <dd>
+                    <span>{{ userParame.titre }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhdemoApp.userParame.description">Description</span></dt>
+                <dd>
+                    <span>{{ userParame.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhdemoApp.userParame.isbn">Isbn</span></dt>
+                <dd>
+                    <span>{{ userParame.isbn }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhdemoApp.userParame.code">Code</span></dt>
+                <dd>
+                    <span>{{ userParame.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhdemoApp.userParame.user">User</span></dt>
+                <dd>
+                    {{ userParame.user?.login }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-parame', userParame.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
