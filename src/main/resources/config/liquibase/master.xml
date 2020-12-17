@@ -21,6 +21,14 @@
     <include file="config/liquibase/changelog/20201211151418_added_entity_Theme.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201211151518_added_entity_Exemplaire.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201211151618_added_entity_Emprunt.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217085805_added_entity_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217085905_added_entity_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090005_added_entity_Location.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090105_added_entity_Department.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090205_added_entity_Task.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090305_added_entity_Employee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090405_added_entity_Job.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090505_added_entity_JobHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20201211151018_added_entity_constraints_Livre.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201211151118_added_entity_constraints_UserParame.xml" relativeToChangelogFile="false"/>
@@ -28,6 +36,12 @@
     <include file="config/liquibase/changelog/20201211151418_added_entity_constraints_Theme.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201211151518_added_entity_constraints_Exemplaire.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201211151618_added_entity_constraints_Emprunt.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217085905_added_entity_constraints_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090005_added_entity_constraints_Location.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090105_added_entity_constraints_Department.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090305_added_entity_constraints_Employee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090405_added_entity_constraints_Job.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201217090505_added_entity_constraints_JobHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
