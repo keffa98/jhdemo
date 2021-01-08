@@ -19,13 +19,11 @@ jobs:
                   node-version: 12.16.1
             - uses: actions/setup-java@v1
               with:
-                  java-version: '11.x'
+                  java-version: '1.8'
             - name: Install node.js packages
               run: npm install
             - name: Run backend test
-              run: |
-                  chmod +x mvnw
-                  ./mvnw -ntp clean verify -P-webpack
+              run: mvn -ntp clean verify -P-webpack
             - name: Run frontend test
               run: npm run test
             - name: Analyze code with SonarQube
@@ -34,20 +32,20 @@ jobs:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
               run: |
                   if [ -n $SONAR_TOKEN ]; then
-                      ./mvnw -ntp initialize sonar:sonar -Dsonar.organization=ynovmaster2 -Dsonar.host.url=https://sonarcloud.io
+                      mvn -ntp initialize sonar:sonar -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }}
                   else
                       echo No SONAR_TOKEN, skipping...
                   fi
             - name: Package application
-              run: ./mvnw -ntp package deploy -Pprod -DskipTests
+              run: mvnw -ntp package deploy -Pprod -DskipTests
             - name: Deploy to Heroku
               if: github.event_name == 'push' && github.ref == 'refs/heads/master'
               env:
                   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-              run: ./mvnw -ntp com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=heroku/jvm -Dheroku.appName=jhdemo
+              run: mvnw -ntp com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=${{ secrets.HEROKU_BUILD_PACK }} -Dheroku.appName=${{ secrets.HEROKU_APP_NAME }}
             - name: Build and publish docker image
               if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/'))
               run: |
                   GIT_TAG=:${GITHUB_REF#refs/tags/}
                   DOCKER_TAG=${GIT_TAG#:refs/heads/master}
-                  ./mvnw -ntp jib:build -Djib.to.image=bilonjea/myjhdemo${DOCKER_TAG} -Djib.to.auth.username="${{ secrets.DOCKER_USERNAME }}" -Djib.to.auth.password="${{ secrets.DOCKER_PASSWORD }}"
+                  mvn -ntp jib:build -Djib.to.image=bilonjea/myjhdemo${DOCKER_TAG} -Djib.to.auth.username="${{ secrets.DOCKER_USERNAME }}" -Djib.to.auth.password="${{ secrets.DOCKER_PASSWORD }}"
