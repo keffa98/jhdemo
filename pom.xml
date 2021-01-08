@@ -18,6 +18,8 @@
     </pluginRepositories>
 
     <!-- jhipster-needle-distribution-management -->
+    
+   
 
     <properties>
         <!-- Build properties -->
