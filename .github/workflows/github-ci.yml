@@ -5,6 +5,7 @@ on:
     branches :
       #- '**/feature/*'
       - feature/jhipsterci
+      - 'develop'
   pull_request:
      branches :
       - 'develop'
@@ -25,6 +26,9 @@ jobs:
             NG_CLI_ANALYTICS: false
         steps:
             - uses: actions/checkout@v2
+              with:
+                repository: ynovmaster2/jhdemo
+
             - uses: actions/setup-node@v1
               with:
                   node-version: 12.16.1
@@ -38,7 +42,7 @@ jobs:
             - name: Run frontend test
               run: npm run test
             - name: Analyze code with SonarQube
-              #continue-on-error: true
+              continue-on-error: true
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
