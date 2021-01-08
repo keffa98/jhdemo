@@ -9,6 +9,14 @@
     <packaging>jar</packaging>
     <name>Jhdemo</name>
 
+
+    <scm>                   
+        <connection>scm:git:git@github.com:ynovmaster2/jhdemo.git</connection>
+        <developerConnection>scm:git:git@github.com:ynovmaster2/jhdemo.git</developerConnection>
+        <url>scm:git:git@github.com:ynovmaster2/jhdemo.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <repositories>
         <!-- jhipster-needle-maven-repository -->
     </repositories>
@@ -18,6 +26,8 @@
     </pluginRepositories>
 
     <distributionManagement>
+        <!-- Deploy on jfrog -->
+        <!-- 
         <snapshotRepository>
             <id>snapshots</id>
             <url>https://testynov.jfrog.io/artifactory/libs-snapshot-local/</url>
@@ -26,6 +36,16 @@
             <id>central</id>
             <url>https://testynov.jfrog.io/artifactory/libs-release-local/</url>
         </repository>
+       -->
+
+       <!-- Deploy on github -->
+
+       <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/ynovmaster2/jhdemo</url>
+        </repository>
+
     </distributionManagement>
     <!-- jhipster-needle-distribution-management -->
     
