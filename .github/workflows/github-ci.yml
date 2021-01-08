@@ -1,12 +1,16 @@
 name: Application CI
+
 on: 
   push: 
     branches :
       #- '**/feature/*'
       - feature/jhipsterci
   pull_request:
-     - 'develop'
-     - 'master'
+     branches :
+      - 'develop'
+      - 'master'
+
+      
 jobs:
     pipeline:
         name: jhdemo pipeline
