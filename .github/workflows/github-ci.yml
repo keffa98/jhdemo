@@ -54,12 +54,22 @@ jobs:
             - name: Package application
               continue-on-error: true
               run: mvn -ntp package deploy -Pprod -DskipTests
+            
+
             - name: Deploy to Heroku
               continue-on-error: true
               if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-              env:
-                  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-              run: mvn -ntp com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=${{ secrets.HEROKU_BUILD_PACK }} -Dheroku.appName=${{ secrets.HEROKU_APP_NAME }}
+              #env:
+              #    HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+              #run: mvn -ntp com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=${{ secrets.HEROKU_BUILD_PACK }} -Dheroku.appName=${{ secrets.HEROKU_APP_NAME }}
+              uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
+              with:
+                 heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                 heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
+                 heroku_email: ${{secrets.HEROKU_EMAIL}}
+                 branch: "master"
+                 buildpack: ${{secrets.HEROKU_BUILD_PACK}}
+
             - name: Build and publish docker image
               continue-on-error: true
               if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/'))
