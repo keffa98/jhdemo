@@ -5,15 +5,15 @@ on:
     branches :
       - '**/feature/*'
       - 'develop'
-      - 'master'
+      - 'main'
   pull_request:
      branches :
       - 'develop'
-      - 'master'
+      - 'main'
     
 jobs:
     job_build_test:
-        name: jhdemo pipeline
+        name: build test backend && frontend
         runs-on: ubuntu-latest
         if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
         timeout-minutes: 40
@@ -90,7 +90,7 @@ jobs:
             java-version: 11
         - name: Deploy to Heroku
           continue-on-error: true
-          if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+          if: github.event_name == 'push' && github.ref == 'refs/heads/main'
            #env:
            #    HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
            #run: mvn -ntp com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=${{ secrets.HEROKU_BUILD_PACK }} -Dheroku.appName=${{ secrets.HEROKU_APP_NAME }}
@@ -99,7 +99,7 @@ jobs:
                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
                  heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
                  heroku_email: ${{secrets.HEROKU_EMAIL}}
-                 branch: "master"
+                 branch: "main"
                  buildpack: ${{secrets.HEROKU_BUILD_PACK}}
 
     job_publish_dockerhub:
@@ -114,10 +114,10 @@ jobs:
         
         - name: Build and publish docker image
           continue-on-error: true
-          if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/'))
+          if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
           run: |
                   GIT_TAG=:${GITHUB_REF#refs/tags/}
-                  DOCKER_TAG=${GIT_TAG#:refs/heads/master}
+                  DOCKER_TAG=${GIT_TAG#:refs/heads/main}
                   mvn -ntp jib:build -Djib.to.image=bilonjea/myjhdemo${DOCKER_TAG} -Djib.to.auth.username="${{ secrets.DOCKER_USERNAME }}" -Djib.to.auth.password="${{ secrets.DOCKER_PASSWORD }}"
 
 
