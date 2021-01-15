@@ -72,7 +72,7 @@ jobs:
                      -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} \ 
                      -Dsonar.host.url=${{ secrets.SONAR_URL }} \ 
                      -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-                     -Dsonar.projectName=${{ secrets.SONAR_PROJECT_NAME }}
+                     -Dsonar.projectName=${{ secrets.SONAR_PROJECT_NAME }} \
                       
                   else
                       echo No SONAR_TOKEN, skipping...
