@@ -67,7 +67,7 @@ jobs:
             
     job_publish_artifact:
       name: Package application #publish to github package
-      needs: job_code_quality
+      needs: job_build_test
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
