@@ -106,7 +106,9 @@ jobs:
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
-              mvn -ntp release:prepare release:perform -DskipTests 
+               git config --global user.email "j.bilong@gmail.com"
+               git config --global user.name "bilonjea"
+               mvn -ntp release:prepare release:perform -DskipTests 
   
     job_publish_dockerhub:
       name: publish to docker hub
