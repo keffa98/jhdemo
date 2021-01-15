@@ -74,7 +74,7 @@ jobs:
 
 
     job_publish_artifact:
-      name: Publish artefac to github #publish to github package
+      name: Publish artefac  #publish to github package
       needs: job_build_test
       runs-on: ubuntu-latest
       steps:
@@ -82,14 +82,14 @@ jobs:
         - uses: actions/setup-java@v1
           with:
             java-version: 11
-        - name: Publish package
+        - name: Publish snapshot artefac
           run: mvn -ntp package deploy -Pprod -DskipTests #mvn --batch-mode deploy
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 
     job5_release:
-      name: publish release to jfrog
+      name: publish release #publish to github package
       needs: job_publish_artifact
       runs-on: ubuntu-20.04
       steps:
@@ -101,7 +101,7 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 12.16.1
-        - name: publish release artifact to jfrog artifactory
+        - name: publish release artifact
           continue-on-error: true
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
