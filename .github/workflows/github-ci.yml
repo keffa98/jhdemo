@@ -111,6 +111,9 @@ jobs:
         - uses: actions/setup-java@v1
           with:
             java-version: 11
+
+        - name: Run backend test
+              run: mvn -ntp clean package -P-webpack
         
         - name: Build and publish docker image
           continue-on-error: true
