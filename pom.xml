@@ -35,7 +35,7 @@
         </repository>
 
     </distributionManagement>
-    <!-- jhipster-needle-distribution-management -it->
+    <!-- jhipster-needle-distribution-management -->
     
 
     <properties>
