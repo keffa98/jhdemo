@@ -26,20 +26,7 @@
     </pluginRepositories>
 
     <distributionManagement>
-        <!-- Deploy on jfrog -->
-        <!-- 
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>https://ynov.jfrog.io/artifactory/libs-snapshot-local/</url>
-        </snapshotRepository>
-        <repository>
-            <id>central</id>
-            <url>https://ynov.jfrog.io/artifactory/libs-release-local/</url>
-        </repository>
-       -->
-
-       <!-- Deploy on github -->
-
+       
        <repository>
             <id>github</id>
             <name>GitHub Packages</name>
