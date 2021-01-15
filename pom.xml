@@ -5,7 +5,7 @@
 
     <groupId>com.ynov.demo</groupId>
     <artifactId>jhdemo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Jhdemo</name>
 
@@ -30,11 +30,11 @@
         <!-- 
         <snapshotRepository>
             <id>snapshots</id>
-            <url>https://testynov.jfrog.io/artifactory/libs-snapshot-local/</url>
+            <url>https://ynov.jfrog.io/artifactory/libs-snapshot-local/</url>
         </snapshotRepository>
         <repository>
             <id>central</id>
-            <url>https://testynov.jfrog.io/artifactory/libs-release-local/</url>
+            <url>https://ynov.jfrog.io/artifactory/libs-release-local/</url>
         </repository>
        -->
 

@@ -66,7 +66,7 @@ jobs:
 
             
     job_publish_artifact:
-      name: Package application #publish to github package
+      name: Publish artefac to github #publish to github package
       needs: job_build_test
       runs-on: ubuntu-latest
       steps:
