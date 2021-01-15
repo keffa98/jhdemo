@@ -66,7 +66,7 @@ jobs:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           run: |
                   if [ -n $SONAR_TOKEN ]; then
-                      mvn -ntp initialize sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+                      mvn -ntp initialize sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }}  -Dsonar.projectName=${{ secrets.SONAR_PROJECT_NAME}}
                   else
                       echo No SONAR_TOKEN, skipping...
                   fi
