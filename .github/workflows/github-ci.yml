@@ -9,9 +9,7 @@ on:
   pull_request:
      branches :
       - 'develop'
-      - 'master'
-
-    
+      - 'master'    
 jobs:
     job_build_test:
         name: build test backend && frontend ok
@@ -67,15 +65,30 @@ jobs:
           run: |
                if [ -n $SONAR_TOKEN ]; 
                then
-                 mvn -ntp initialize sonar:sonar \
-                 -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-                 -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} \ 
-                 -Dsonar.host.url=${{ secrets.SONAR_URL }} \     
+                 mvn -ntp initialize sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }}     
                 else
                   echo No SONAR_TOKEN, skipping...
                 fi
 
-
+    job5_release:
+    name: publish release to jfrog
+    needs: job_code_quality
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2 # The checkout step downloads a copy of your repository on the runner.
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          architecture: x64
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.1
+      - name: publish release artifact to jfrog artifactory
+        continue-on-error: true
+        env:
+             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+              mvn -ntp release:prepare release:perform -DskipTests
     
       
     #https://github.com/marketplace/actions/deploy-to-heroku  
