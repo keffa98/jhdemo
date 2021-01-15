@@ -5,7 +5,7 @@
 
     <groupId>com.ynov.demo</groupId>
     <artifactId>jhdemo</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Jhdemo</name>
 
@@ -41,9 +41,9 @@
     <properties>
         <!-- Build properties -->
         <maven.version>3.3.9</maven.version>
-  	    <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
-  	    <sonar.organization>ynovmaster2</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  	    <sonar.projectKey>ynovmaster2_jhdemo</sonar.projectKey>
+  		<sonar.organization>ynovmaster2</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <java.version>11</java.version>
         <java.target.version>11</java.target.version>
         <node.version>v12.16.1</node.version>
