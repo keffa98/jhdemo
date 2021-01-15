@@ -71,8 +71,7 @@ jobs:
                       -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
                       -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} \
                       -Dsonar.host.url=${{ secrets.SONAR_URL }} \ 
-                      -Dsonar.projectName=${{ secrets.SONAR_PROJECT_NAME}} \
-                      -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+                      
                   else
                       echo No SONAR_TOKEN, skipping...
                   fi
