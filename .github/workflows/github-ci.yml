@@ -113,7 +113,8 @@ jobs:
             java-version: 11
 
         - name: Run backend test
-            run: mvn -ntp clean package -P-webpack
+            run: |
+                 mvn -ntp clean package
         
         - name: Build and publish docker image
           continue-on-error: true
