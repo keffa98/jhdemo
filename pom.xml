@@ -45,9 +45,9 @@
         <!-- 
         <sonar.organization>ynovmaster2</sonar.organization>
         <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url> 
+  		 
   	    -->
-        
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <java.version>11</java.version>
         <java.target.version>11</java.target.version>
         <node.version>v12.16.1</node.version>
