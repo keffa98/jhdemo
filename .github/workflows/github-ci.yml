@@ -40,7 +40,7 @@ jobs:
               run: npm run test
 
     
-    job_code_quality:
+    job_code_quality: #https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
       name: Analyze code with SonarQube
       #needs: job_build_test
       runs-on: ubuntu-latest
