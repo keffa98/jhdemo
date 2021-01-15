@@ -26,9 +26,6 @@ jobs:
             NG_CLI_ANALYTICS: false
         steps:
             - uses: actions/checkout@v2
-              with:
-                repository: ynovmaster2/jhdemo
-
             - uses: actions/setup-node@v1
               with:
                   node-version: 12.16.1
@@ -52,6 +49,16 @@ jobs:
         - uses: actions/setup-java@v1
           with:
             java-version: 11
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 12.16.1
+        - name: Install node.js packages
+          run: npm install
+        - name: Run backend test
+          run: mvn -ntp clean verify -P-webpack
+        - name: Run frontend test
+          run: npm run test
+
         - name: Analyze code with SonarQube
           continue-on-error: true
           env:
@@ -59,7 +66,7 @@ jobs:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           run: |
                   if [ -n $SONAR_TOKEN ]; then
-                      mvn -ntp initialize sonar:sonar -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+                      mvn -ntp initialize sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
                   else
                       echo No SONAR_TOKEN, skipping...
                   fi
