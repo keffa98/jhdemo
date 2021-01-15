@@ -42,7 +42,8 @@
         <!-- Build properties -->
         <maven.version>3.3.9</maven.version>
         <sonar.projectKey>ynovmaster2_jhdemo</sonar.projectKey>
-        <sonar.organizationKey>ynovmaster2</sonar.organizationKey>
+  		<sonar.organization>ynovmaster2</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <java.version>11</java.version>
         <node.version>v12.16.1</node.version>
         <npm.version>6.14.5</npm.version>
