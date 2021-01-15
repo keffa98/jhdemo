@@ -80,6 +80,7 @@ jobs:
             heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
             heroku_email: ${{secrets.HEROKU_EMAIL}}
             branch: "master"
+            team: ${{secrets.HEROKU_REPO_TEAM}} 
             buildpack: ${{secrets.HEROKU_BUILD_PACK}}
             
     job_publish_artifact:
