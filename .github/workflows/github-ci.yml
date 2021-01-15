@@ -44,7 +44,7 @@ jobs:
     
     job_code_quality:
       name: Analyze code with SonarQube
-      needs: job_build_test
+      #needs: job_build_test
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
@@ -67,7 +67,7 @@ jobs:
             
     job_publish_artifact:
       name: Publish artefac to github #publish to github package
-      needs: job_build_test
+      #needs: job_build_test
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
