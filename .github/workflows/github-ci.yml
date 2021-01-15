@@ -80,10 +80,11 @@ jobs:
           with:
             host: ${{ secrets.SONAR_URL }}
             login: ${{ secrets.SONAR_TOKEN }}
-            #scannerOptions: ${{ secrets.SCANNER_OPTIONS }}
+            scannerOptions: ${{ secrets.SONAR_ORGANISATION }}
             #exclusions: ${{ secrets.SONAR_EXCLUSIONS }}
             #projectKey: "**Develop**"
             #projectName: "**Develop**"
+            
             projectVersion: ${{ github.event.inputs.projectVersion }}
       
 
