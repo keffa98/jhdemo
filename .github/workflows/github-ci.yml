@@ -11,11 +11,6 @@ on:
       - 'develop'
       - 'master'
 
-  workflow_dispatch:
-    inputs:
-      projectVersion:
-        description: '1'
-        required: true
     
 jobs:
     job_build_test:
@@ -70,24 +65,22 @@ jobs:
                   fi
 
 
-    job_code_quality_bis:
-      name: SonarQube Trigger
-      runs-on: ubuntu-latest
+    
+      
+    #https://github.com/marketplace/actions/deploy-to-heroku  
+    jobdeploy:
+      name: Deploy to Herroku
+      #needs: pipeline
+      runs-on: ubuntu-20.04
       steps:
         - uses: actions/checkout@v2
-        - name: SonarQube Scan
-          uses: sijomc/sonarscan-action@1.1
+        - uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
           with:
-            host: ${{ secrets.SONAR_URL }}
-            login: ${{ secrets.SONAR_TOKEN }}
-            scannerOptions: ${{ secrets.SONAR_ORGANISATION }}
-            #exclusions: ${{ secrets.SONAR_EXCLUSIONS }}
-            #projectKey: "**Develop**"
-            #projectName: "**Develop**"
-            
-            projectVersion: ${{ github.event.inputs.projectVersion }}
-      
-
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
+            heroku_email: ${{secrets.HEROKU_EMAIL}}
+            branch: "master"
+            buildpack: ${{secrets.HEROKU_BUILD_PACK}}
             
     job_publish_artifact:
       name: Publish artefac to github #publish to github package
@@ -103,19 +96,7 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    job_deploy_heroku:
-      name: deploy to heroku
-      #needs: job_publish_artifact
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: akhileshns/heroku-deploy@v3.6.8 #https://github.com/marketplace/actions/deploy-to-heroku     
-          with:
-             heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-             heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
-             heroku_email: ${{secrets.HEROKU_EMAIL}}
-             branch: "master"
-             buildpack: ${{secrets.HEROKU_BUILD_PACK}}
+    
 
     job_publish_dockerhub:
       name: publish to docker hub
