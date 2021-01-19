@@ -1,0 +1,44 @@
+name: Application CI
+
+on: 
+  push: 
+    branches :
+      - '**/feature/*'
+      - 'develop'
+      - 'master'
+  pull_request:
+     branches :
+      - 'develop'
+      - 'master'    
+jobs:
+    job5_release:
+      name: publish release #publish to github package
+      needs: job_publish_artifact
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v2 # The checkout step downloads a copy of your repository on the runner.
+        - uses: actions/setup-java@v1
+          with:
+            java-version: 11
+            architecture: x64
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 12.16.1
+        - name: publish release artifact
+          env:
+             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+               git config --global user.email "j.bilong@gmail.com"
+               git config --global user.name "bilonjea"
+               mvn -ntp release:prepare release:perform -DskipTests 
+  
+            
+
+
+
+    
+
+
+
+
+
