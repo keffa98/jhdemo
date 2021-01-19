@@ -1,4 +1,4 @@
-name: Application CI
+name: Release CI
 
 on: 
   push: 
