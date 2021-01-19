@@ -1,5 +1,6 @@
 name: Release CI
 
+
 on: 
   push: 
     branches :
@@ -9,7 +10,10 @@ on:
   pull_request:
      branches :
       - 'develop'
-      - 'master'    
+      - 'master' 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   
 jobs:
     job5_release:
       name: publish release #publish to github package
@@ -25,8 +29,7 @@ jobs:
           with:
             node-version: 12.16.1
         - name: publish release artifact
-          env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
           run: |
                git config --global user.email "j.bilong@gmail.com"
                git config --global user.name "bilonjea"
