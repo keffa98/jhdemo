@@ -13,7 +13,7 @@ on:
 jobs:
     job5_release:
       name: publish release #publish to github package
-      needs: job_publish_artifact
+      #needs: job_publish_artifact
       runs-on: ubuntu-20.04
       steps:
         - uses: actions/checkout@v2 # The checkout step downloads a copy of your repository on the runner.
