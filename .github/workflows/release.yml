@@ -21,7 +21,6 @@ defaults:
 
 jobs:  
     job5_release:
-      needs: job_super-lint #job_publish_artifact
       name: publish release #publish to github package
       runs-on: ubuntu-20.04
       steps:
