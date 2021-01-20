@@ -12,26 +12,14 @@ on:
       - 'develop'
       - 'master' 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GIT_RELEASE_TOKEN }}
+  GIT_RELEASE_TOKEN: ${{ secrets.GIT_RELEASE_TOKEN }}
 
 defaults:
   run:
     shell: bash
 
 jobs:  
-    job_super-lint:
-      name: Lint code base
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-
-        - name: Run Super-Linter
-          uses: github/super-linter@v3
-          env:
-            DEFAULT_BRANCH: main
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     job5_release:
       needs: job_super-lint #job_publish_artifact
       name: publish release #publish to github package
