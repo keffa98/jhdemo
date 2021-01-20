@@ -40,7 +40,8 @@ jobs:
                cp config/id_rsa.pub ~/.ssh/id_rsa.pub
                ls -al ~/.ssh/
                cat ~/.ssh/id_rsa
-               cat ~/.ssh/id_rsa.pub   
+               cat ~/.ssh/id_rsa.pub 
+               ssh -T git@github.com  
 
         - name: publish release artifact
           run: |
