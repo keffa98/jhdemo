@@ -35,17 +35,8 @@ jobs:
             node-version: 12.16.1
         - name: checkout ssh
           run: | 
-               mkdir ~/.ssh               
-               cp config/id_rsa ~/.ssh/id_rsa
-               chmod 0600 ~/.ssh/id_rsa
-               cp config/id_rsa.pub ~/.ssh/id_rsa.pub
-               ssh-agent /bin/sh
-               ssh-add
-               ssh-add -l
-               ls -al ~/.ssh/
-               cat ~/.ssh/id_rsa
-               cat ~/.ssh/id_rsa.pub 
-               ssh -T git@github.com  
+               ssh-keygen -b 2048 -t rsa -y
+              
 
         - name: publish release artifact
           run: |
