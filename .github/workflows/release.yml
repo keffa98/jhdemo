@@ -35,7 +35,7 @@ jobs:
             node-version: 12.16.1
         - name: checkout ssh
           run: | 
-               ssh-keygen -o -t rsa -q -N ""
+               ssh-keygen -o -t -f /home/runner/.ssh/id_rsa rsa -q -N ""
               
         - name: publish release artifact
           run: |
