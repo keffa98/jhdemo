@@ -22,7 +22,6 @@ defaults:
 jobs:  
 
     job5_release:
-      continue-on-error: true
       name: publish release #publish to github package
       runs-on: ubuntu-20.04
       steps:
@@ -35,6 +34,7 @@ jobs:
           with:
             node-version: 12.16.1
         - name: checkout ssh
+          continue-on-error: true
           run: |
                pwd 
                ls -al ~/.m2/
