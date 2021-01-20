@@ -36,12 +36,12 @@ jobs:
         - name: checkout ssh
           run: |
                pwd 
-               ls -al ~/.m2/
-               mkdir ~/.ssh/
+               mkdir ~/.ssh               
+               ls -al ~/.ssh/
                echo $SSH_PRIVATE_KEY >> id_rsa
+               ls -al ~/.ssh/
                cat ~/.ssh/id_rsa
                ssh-add -L
-               
                ssh -T git@github.com
 
         - name: publish release artifact
