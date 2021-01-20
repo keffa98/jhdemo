@@ -17,11 +17,24 @@ env:
 defaults:
   run:
     shell: bash
-    
-jobs:
+
+jobs:  
+  jobs_super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     job5_release:
       name: publish release #publish to github package
-      #needs: job_publish_artifact
+      needs: jobs_super-lint #job_publish_artifact
       runs-on: ubuntu-20.04
       steps:
         - uses: actions/checkout@v2 # The checkout step downloads a copy of your repository on the runner.
@@ -37,6 +50,8 @@ jobs:
           run: |
                git config --global user.email "j.bilong@gmail.com"
                git config --global user.name "bilonjea"
+               pwd 
+               ls -al ~/.m2/
                mvn -ntp release:prepare release:perform -DskipTests 
   
             
