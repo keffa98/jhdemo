@@ -12,7 +12,7 @@ on:
       - 'develop'
       - 'master' 
 env:
-  GITHUB_TOKEN: ${{ secrets.GIT_RELEASE_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GIT_RELEASE_TOKEN: ${{ secrets.GIT_RELEASE_TOKEN }}
 
 defaults:
@@ -20,6 +20,7 @@ defaults:
     shell: bash
 
 jobs:  
+
     job5_release:
       name: publish release #publish to github package
       runs-on: ubuntu-20.04
@@ -32,13 +33,18 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 12.16.1
+        - name: checkout ssh
+          run: |
+               pwd 
+               ls -al ~/.m2/
+               echo "$SSH_AUTH_SOCK"
+               ssh -T git@github.com
+
         - name: publish release artifact
           
           run: |
                git config --global user.email "j.bilong@gmail.com"
                git config --global user.name "bilonjea"
-               pwd 
-               ls -al ~/.m2/
                mvn -ntp release:prepare release:perform -DskipTests 
   
             
