@@ -37,7 +37,7 @@ jobs:
           run: | 
                mkdir ~/.ssh               
                cp config/id_rsa ~/.ssh/id_rsa
-               chmod 644 ~/.ssh/id_rsa
+               chmod 0600 ~/.ssh/id_rsa
                cp config/id_rsa.pub ~/.ssh/id_rsa.pub
                ls -al ~/.ssh/
                cat ~/.ssh/id_rsa
