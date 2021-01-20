@@ -42,6 +42,7 @@ jobs:
               with:
                 name: target
                 path: target
+                retention-days: 1
 
 
     
