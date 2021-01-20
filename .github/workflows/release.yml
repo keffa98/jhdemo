@@ -34,16 +34,15 @@ jobs:
           with:
             node-version: 12.16.1
         - name: checkout ssh
-          continue-on-error: true
           run: |
                pwd 
                ls -al ~/.m2/
+               ssh-add -L
                echo $SSH_PRIVATE_KEY
                echo "$SSH_AUTH_SOCK"
                ssh -T git@github.com
 
         - name: publish release artifact
-          
           run: |
                git config --global user.email "j.bilong@gmail.com"
                git config --global user.name "bilonjea"
