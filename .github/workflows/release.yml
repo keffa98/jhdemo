@@ -38,7 +38,6 @@ jobs:
           run: |
                pwd 
                ls -al ~/.m2/
-               ls -al ~/.ssh/
                echo $SSH_PRIVATE_KEY
                echo "$SSH_AUTH_SOCK"
                ssh -T git@github.com
