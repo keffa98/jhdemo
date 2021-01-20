@@ -34,11 +34,9 @@ jobs:
           with:
             node-version: 12.16.1
         - name: checkout ssh
-          run: |
-               pwd 
+          run: | 
                mkdir ~/.ssh               
-               ls -al ~/.ssh/
-               echo $SSH_PRIVATE_KEY >> id_rsa
+               echo $SSH_PRIVATE_KEY >> ~/.ssh/id_rsa
                ls -al ~/.ssh/
                cat ~/.ssh/id_rsa
                ssh-add -L
