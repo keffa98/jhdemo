@@ -13,7 +13,7 @@ on:
       - 'master' 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
 defaults:
   run:
@@ -38,6 +38,8 @@ jobs:
           run: |
                pwd 
                ls -al ~/.m2/
+               ls -al ~/.ssh/
+               echo $SSH_PRIVATE_KEY
                echo "$SSH_AUTH_SOCK"
                ssh -T git@github.com
 
