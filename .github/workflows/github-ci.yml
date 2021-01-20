@@ -36,26 +36,33 @@ jobs:
               run: mvn -ntp clean verify -P-webpack
             - name: Run frontend test
               run: npm run test
+            
+            - name: upload target sharing build
+              uses: actions/upload-artifact@v1
+              with:
+                name: target
+                path: target
+
 
     
     job_code_quality:
       name: Analyze code with SonarQube
-      #needs: job_build_test
+      needs: job_build_test
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-java@v1
           with:
             java-version: 11
+        
         - uses: actions/setup-node@v1
           with:
             node-version: 12.16.1
-        - name: Install node.js packages
-          run: npm install
-        - name: Run backend test
-          run: mvn -ntp clean verify -P-webpack
-        - name: Run frontend test
-          run: npm run test
+        
+        - name: download target sharing build
+          uses: actions/download-artifact@v1
+          with:
+            name: target
 
         - name: Analyze code with SonarQube
           env:
@@ -72,15 +79,21 @@ jobs:
 
     job_publish_artifact:
       name: Publish artefac  #publish to github package
-      needs: job_build_test
+      needs: job_code_quality
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-java@v1
           with:
             java-version: 11
+        
+        - name: download target sharing build
+          uses: actions/download-artifact@v1
+          with:
+            name: target
+        
         - name: Publish snapshot artefac
-          run: mvn -ntp package deploy -Pprod -DskipTests #mvn --batch-mode deploy
+          run: mvn -ntp deploy -Pprod -DskipTests #mvn --batch-mode deploy
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
@@ -95,9 +108,16 @@ jobs:
           with:
             java-version: 11
             architecture: x64
+        
         - uses: actions/setup-node@v1
           with:
             node-version: 12.16.1
+        
+        - name: download target sharing build
+          uses: actions/download-artifact@v1
+          with:
+            name: target
+
         - name: publish release artifact
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -108,7 +128,7 @@ jobs:
   
     job_publish_dockerhub:
       name: publish to docker hub
-      needs: job5_release
+      needs: job_code_quality #job5_release
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
@@ -116,8 +136,10 @@ jobs:
           with:
             java-version: 11
 
-        - name: Run backend test
-          run: mvn -ntp clean package -P-webpack
+        - name: download target sharing build
+          uses: actions/download-artifact@v1
+          with:
+            name: target
         
         - name: Build and publish docker image
           if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/'))
@@ -130,7 +152,7 @@ jobs:
     #https://github.com/marketplace/actions/deploy-to-heroku  
     jobdeploy:
       name: Deploy to Herroku
-      needs: job5_release
+      needs: job_code_quality #job5_release
       runs-on: ubuntu-20.04
       steps:
         - uses: actions/checkout@v2
