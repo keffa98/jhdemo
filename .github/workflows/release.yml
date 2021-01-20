@@ -39,7 +39,7 @@ jobs:
                cp config/id_rsa ~/.ssh/id_rsa
                chmod 0600 ~/.ssh/id_rsa
                cp config/id_rsa.pub ~/.ssh/id_rsa.pub
-               ssh-agent bash
+               ssh-agent /bin/sh
                ssh-add
                ssh-add -l
                ls -al ~/.ssh/
