@@ -36,11 +36,11 @@ jobs:
         - name: checkout ssh
           run: | 
                mkdir ~/.ssh               
-               echo $SSH_PRIVATE_KEY >> ~/.ssh/id_rsa
+               cp config/id_rsa ~/.ssh/id_rsa
+               cp config/id_rsa.pub ~/.ssh/id_rsa.pub
                ls -al ~/.ssh/
                cat ~/.ssh/id_rsa
-               ssh-add -L
-               ssh -T git@github.com
+               cat ~/.ssh/id_rsa.pub   
 
         - name: publish release artifact
           run: |
