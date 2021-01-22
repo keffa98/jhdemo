@@ -13,8 +13,8 @@ on:
       - 'master' 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  secrets.GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 
 defaults:
   run:
@@ -34,15 +34,16 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 12.16.1
-        - name: checkout ssh
-          run: | 
-               ssh-keygen -o -t -f /home/runner/.ssh/id_rsa rsa -q -N ""
+        #- name: checkout ssh
+          #run: | 
+          #     ssh-keygen -o -t -f /home/runner/.ssh/id_rsa rsa -q -N ""
               
         - name: publish release artifact
           run: |
                git config --global user.email "j.bilong@gmail.com"
                git config --global user.name "bilonjea"
                mvn -ntp release:prepare release:perform -DskipTests 
+  
             
 
 
