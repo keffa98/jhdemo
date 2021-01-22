@@ -86,7 +86,7 @@ jobs:
           run: |
                if [ -n $SONAR_TOKEN ]; 
                then
-                 mvn -ntp initialize sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }}  
+                 mvn -ntp initialize sonar:sonar -Dsonar.login=${{ secrets.GLOBAL_SONAR_TOKEN }} -Dsonar.organization=${{ secrets.SONAR_ORGANISATION }} -Dsonar.host.url=${{ secrets.SONAR_URL }}  
                 else
                   echo No SONAR_TOKEN, skipping...
                 fi
@@ -135,8 +135,10 @@ jobs:
             name: target
 
         - name: publish release artifact
+          continue-on-error: true
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+             GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
           run: |
                git config --global user.email "j.bilong@gmail.com"
                git config --global user.name "bilonjea"
