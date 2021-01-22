@@ -11,21 +11,21 @@ on:
       - 'develop'
       - 'master'    
 jobs:  
-    jobs_super-lint:
-      name: Lint code base
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
+    #jobs_super-lint:
+      #name: Lint code base
+      #runs-on: ubuntu-latest
+      #steps:
+        #- name: Checkout code
+          #uses: actions/checkout@v2
 
-        - name: Run Super-Linter
-          uses: github/super-linter@v3
-          env:
-            DEFAULT_BRANCH: main
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #- name: Run Super-Linter
+         # uses: github/super-linter@v3
+          #env:
+            #DEFAULT_BRANCH: main
+            #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     job_build_test:
-        needs: jobs_super-lint
+        #needs: jobs_super-lint
         name: build test backend && frontend ok
         runs-on: ubuntu-latest
         if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
