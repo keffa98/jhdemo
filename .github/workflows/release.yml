@@ -11,10 +11,10 @@ on:
      branches :
       - 'develop'
       - 'master' 
-#env:
-  #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-  #SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  secrets.GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
 defaults:
   run:
@@ -34,23 +34,15 @@ jobs:
         - uses: actions/setup-node@v1
           with:
             node-version: 12.16.1
-        - uses: mg-smartrent/github-actions-maven-release@v1.5 #uses: MiniDigger/github-actions-maven-release@v1.10.2 #uses: qcastel/github-actions-maven-release@master
-          with:
-            release-branch-name: "master"
-            git-release-bot-name: "ReleaseBot"
-            git-release-bot-email: "release.bot@smartrent.com"
-            access-token: ${GITHUB_TOKEN}
-
-            # Release
-            maven-repo-server-id: ${MAVEN_SERVER_ID}
-            maven-repo-server-username: ${GITHUB_USERNAME}
-            maven-repo-server-password: ${GITHUB_TOKEN}
-            maven-release-args: "-Dskip.unit.tests=true -Dskip.integration.tests=true"
-
-            # Publish artifacts to GitHub Packages
-            #maven-publish-args: "-Dskip.unit.tests=true -Dskip.integration.tests=true"
-            maven-release-publish: "true"
-            maven-snapshot-publish: "true"
+        - name: checkout ssh
+          run: | 
+               ssh-keygen -o -t -f /home/runner/.ssh/id_rsa rsa -q -N ""
+              
+        - name: publish release artifact
+          run: |
+               git config --global user.email "j.bilong@gmail.com"
+               git config --global user.name "bilonjea"
+               mvn -ntp release:prepare release:perform -DskipTests 
             
 
 
