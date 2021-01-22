@@ -42,19 +42,9 @@ jobs:
         - name: publish release artifact
           uses: qcastel/github-actions-maven-release@v1.0.3
           with:
-            #access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            maven-args: "-Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
-            git-release-bot-name: "bilonjea"
-            git-release-bot-email: "j.bilong@gmail.com
+            access-token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+            #ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            #maven-args: "-Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
+            #git-release-bot-name: "bilonjea"
+            #git-release-bot-email: "j.bilong@gmail.com
   
-            
-
-
-
-    
-
-
-
-
-
