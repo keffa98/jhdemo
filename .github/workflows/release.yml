@@ -26,7 +26,7 @@ jobs:
       name: publish release #publish to github package
       runs-on: ubuntu-20.04
       steps:
-        - uses: actions/checkout@v2 # The checkout step downloads a copy of your repository on the runner.
+        #- uses: actions/checkout@v2 # The checkout step downloads a copy of your repository on the runner.
         - uses: actions/setup-java@v1
           with:
             java-version: 11
@@ -48,7 +48,7 @@ jobs:
             maven-release-args: "-Dskip.unit.tests=true -Dskip.integration.tests=true"
 
             # Publish artifacts to GitHub Packages
-            maven-publish-args: "-Dskip.unit.tests=true -Dskip.integration.tests=true"
+            #maven-publish-args: "-Dskip.unit.tests=true -Dskip.integration.tests=true"
             maven-release-publish: "true"
             maven-snapshot-publish: "true"
             
