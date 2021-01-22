@@ -46,5 +46,4 @@ jobs:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             maven-args: "-Dmaven.javadoc.skip=true -DskipTests -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
             git-release-bot-name: "bilonjea"
-            git-release-bot-email: "j.bilong@gmail.com
-  
+            git-release-bot-email: "j.bilong@gmail.com"
