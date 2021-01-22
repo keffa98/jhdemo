@@ -82,7 +82,7 @@ jobs:
         - name: Analyze code with SonarQube
           env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_TOKEN: ${{ secrets.GLOBAL_SONAR_TOKEN  }}  #${{ secrets.SONAR_TOKEN }}
           run: |
                if [ -n $SONAR_TOKEN ]; 
                then
@@ -93,7 +93,7 @@ jobs:
 
 
     job_publish_artifact:
-      name: Publish artefac  #publish to github package
+      name: Publish artefact  #publish to github package
       needs: job_code_quality
       runs-on: ubuntu-latest
       steps:
@@ -111,6 +111,7 @@ jobs:
           run: mvn -ntp deploy -Pprod -DskipTests #mvn --batch-mode deploy
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
     
 
     job5_release:
